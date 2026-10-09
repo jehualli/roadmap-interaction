@@ -1,0 +1,434 @@
+:root {
+  --bg: #f7f4ed;
+  --surface: #ffffff;
+  --surface-strong: #f0f7f5;
+  --ink: #20231f;
+  --muted: #636961;
+  --line: #d9ded5;
+  --green: #246b57;
+  --blue: #2d5f9a;
+  --red: #b44b45;
+  --gold: #ba7b16;
+  --shadow: 0 18px 48px rgba(40, 45, 37, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+}
+
+.shell,
+.roadmapPage {
+  margin: 0 auto;
+  max-width: 1240px;
+  padding: 32px;
+}
+
+.pageHeader,
+.roadmapHero {
+  align-items: flex-end;
+  display: flex;
+  gap: 24px;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+
+.eyebrow,
+.toolbarLabel {
+  color: var(--green);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  margin: 0 0 8px;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  font-size: clamp(2.4rem, 7vw, 6.2rem);
+  line-height: 0.95;
+  margin-bottom: 16px;
+}
+
+.pageHeader h1 {
+  margin-bottom: 0;
+}
+
+.heroText p:last-child,
+.roadmapCard p,
+.detailHeader p {
+  color: var(--muted);
+  line-height: 1.6;
+  max-width: 680px;
+}
+
+.targetPanel {
+  align-items: flex-start;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  display: flex;
+  gap: 14px;
+  max-width: 430px;
+  padding: 18px;
+}
+
+.targetPanel svg {
+  color: var(--red);
+  flex: 0 0 auto;
+}
+
+.targetPanel span {
+  color: var(--muted);
+  display: block;
+  font-size: 0.82rem;
+  margin-bottom: 4px;
+}
+
+.targetPanel strong {
+  line-height: 1.45;
+}
+
+.roadmapList {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.roadmapCard {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  min-height: 230px;
+  padding: 22px;
+  transition:
+    border-color 180ms ease,
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.roadmapCard:hover {
+  border-color: var(--green);
+  box-shadow: var(--shadow);
+  transform: translateY(-2px);
+}
+
+.levelBadge,
+.stageBadge {
+  background: var(--surface-strong);
+  border-radius: 999px;
+  color: var(--green);
+  display: inline-flex;
+  font-size: 0.78rem;
+  font-weight: 800;
+  margin-bottom: 18px;
+  padding: 6px 10px;
+}
+
+.roadmapCard h2 {
+  font-size: 1.45rem;
+  margin-bottom: 10px;
+}
+
+.cardAction {
+  align-items: center;
+  color: var(--green);
+  display: inline-flex;
+  font-weight: 800;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+.workspace {
+  align-items: stretch;
+  display: grid;
+  gap: 18px;
+  grid-template-columns: minmax(0, 1fr) 360px;
+}
+
+.mapArea,
+.detailPanel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+.mapToolbar {
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+  display: grid;
+  gap: 16px;
+  grid-template-columns: auto 1fr;
+  min-height: 72px;
+  padding: 16px 18px;
+}
+
+.mapToolbar strong {
+  display: block;
+  font-size: 1.5rem;
+}
+
+.progressTrack {
+  background: #e5e9e2;
+  border-radius: 999px;
+  height: 10px;
+  overflow: hidden;
+}
+
+.progressTrack span {
+  background: linear-gradient(90deg, var(--green), var(--gold));
+  display: block;
+  height: 100%;
+  transition: width 220ms ease;
+}
+
+.roadmapCanvas {
+  aspect-ratio: 16 / 10;
+  margin: 14px;
+  min-height: 560px;
+  overflow: hidden;
+  position: relative;
+}
+
+.pathLines {
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  z-index: 1;
+}
+
+.pathCurve {
+  fill: none;
+  stroke: rgba(45, 95, 154, 0.28);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+}
+
+.pathArrow {
+  fill: rgba(45, 95, 154, 0.45);
+}
+
+.topicNode {
+  align-items: center;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 10px 28px rgba(40, 45, 37, 0.1);
+  cursor: pointer;
+  display: grid;
+  gap: 8px;
+  grid-template-columns: 30px minmax(0, 1fr);
+  min-height: 52px;
+  padding: 8px 10px;
+  position: absolute;
+  text-align: left;
+  transform: translate(-50%, -50%);
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
+  width: clamp(145px, 22%, 174px);
+  z-index: 2;
+}
+
+.topicNode:hover,
+.topicNode.selected {
+  border-color: var(--blue);
+  box-shadow: 0 12px 30px rgba(45, 95, 154, 0.18);
+  transform: translate(-50%, -50%) scale(1.02);
+}
+
+.topicNode.completed {
+  border-color: rgba(36, 107, 87, 0.65);
+}
+
+.nodeNumber {
+  align-items: center;
+  background: var(--surface-strong);
+  border-radius: 999px;
+  color: var(--green);
+  display: inline-flex;
+  font-size: 0.78rem;
+  font-weight: 900;
+  height: 30px;
+  justify-content: center;
+  width: 30px;
+}
+
+.nodeLabel {
+  align-items: center;
+  display: flex;
+  font-size: clamp(0.76rem, 1.2vw, 0.9rem);
+  font-weight: 800;
+  gap: 6px;
+  line-height: 1.15;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.nodeLabel svg {
+  color: var(--gold);
+  flex: 0 0 auto;
+}
+
+.detailPanel {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: 22px;
+}
+
+.detailHeader h2 {
+  font-size: 1.7rem;
+  line-height: 1.08;
+  margin-bottom: 12px;
+}
+
+.detailSection {
+  border-top: 1px solid var(--line);
+  padding-top: 18px;
+}
+
+.detailSection h3 {
+  font-size: 0.86rem;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+.detailSection ul {
+  display: grid;
+  gap: 10px;
+  list-style: none;
+  margin: 0 0 20px;
+  padding: 0;
+}
+
+.detailSection li {
+  align-items: center;
+  color: var(--muted);
+  display: flex;
+  gap: 9px;
+  line-height: 1.4;
+}
+
+.detailSection svg {
+  color: var(--green);
+  flex: 0 0 auto;
+}
+
+.checkList label {
+  align-items: center;
+  cursor: pointer;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 18px minmax(0, 1fr);
+  width: 100%;
+}
+
+.checkList input {
+  accent-color: var(--green);
+  height: 16px;
+  margin: 0;
+  width: 16px;
+}
+
+.checkList a {
+  align-items: center;
+  color: var(--blue);
+  display: inline-flex;
+  font-weight: 750;
+  gap: 5px;
+  line-height: 1.35;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.checkList a:hover {
+  color: var(--green);
+}
+
+.completeButton {
+  align-items: center;
+  background: var(--green);
+  border: 0;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  font-weight: 900;
+  gap: 8px;
+  justify-content: center;
+  margin-top: auto;
+  min-height: 48px;
+  padding: 12px 16px;
+}
+
+.completeButton:disabled {
+  background: #aab3a9;
+  cursor: not-allowed;
+}
+
+@media (max-width: 960px) {
+  .pageHeader,
+  .roadmapHero {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .detailPanel {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 720px) {
+  .shell,
+  .roadmapPage {
+    padding: 20px;
+  }
+
+  .roadmapCanvas {
+    aspect-ratio: auto;
+    min-height: 760px;
+  }
+
+  .topicNode {
+    width: min(172px, 43%);
+  }
+}
